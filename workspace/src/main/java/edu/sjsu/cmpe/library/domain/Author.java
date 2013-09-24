@@ -1,12 +1,14 @@
 
 package edu.sjsu.cmpe.library.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Author {
 	@JsonProperty("id")
 	private Long id;
-//	private Long rating;
+	@NotEmpty
 	@JsonProperty("name")
 	private String name;
 	

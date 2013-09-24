@@ -1,5 +1,7 @@
 package edu.sjsu.cmpe.library.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Review {
@@ -7,6 +9,7 @@ public class Review {
 	private Long id;
 	@JsonProperty("rating")
 	private Long rating;
+	@NotEmpty
 	@JsonProperty("comment")
 	private String comments;
 	

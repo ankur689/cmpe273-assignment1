@@ -3,6 +3,7 @@ package edu.sjsu.cmpe.library.api.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -49,7 +50,7 @@ public class BookResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Timed(name = "create-book")
-	public Response createBookByIsbn(Book book) {
+	public Response createBookByIsbn(@Valid Book book) {
 		BookDto dto = new BookDto(book);
 		Long isbn = LibraryUtil.generateISBN();
 		book.setIsbn(isbn);
@@ -193,7 +194,7 @@ public class BookResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Timed(name = "create-reviews")
 	public Response createReview(@PathParam("isbn") LongParam isbn,
-			Review review) throws Exception {
+		@Valid	Review review) throws Exception {
 	    LinksDto linkResponse = new LinksDto();
 	    BookDto bookDto = getBookByIsbn(isbn);
 	    List<Review> reviewList = bookDto.getBook().getReviews();
@@ -207,7 +208,7 @@ public class BookResource {
 				+ "/reviews/" + reviewId, "GET"));
 		LibraryUtil.booksMap.put( bookDto.getBook().getIsbn(), bookDto);
 		Response builder = Response
-				.ok(linkResponse, MediaType.APPLICATION_JSON).build();
+				.ok(linkResponse, MediaType.APPLICATION_JSON).status(201).build();
 		builder.status(Status.CREATED);
 		return builder;
 	}

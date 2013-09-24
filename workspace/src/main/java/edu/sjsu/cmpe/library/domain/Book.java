@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book implements Serializable {
@@ -15,10 +17,11 @@ public class Book implements Serializable {
 	 */
 	private static final long serialVersionUID = 12121212243434L;
 	private long isbn;
+	@NotEmpty
 	@NotNull
     @JsonProperty("title")
     private String title;
-	
+	@NotEmpty
 	@JsonProperty("publication-date")
     private String publicationDate;
 	
