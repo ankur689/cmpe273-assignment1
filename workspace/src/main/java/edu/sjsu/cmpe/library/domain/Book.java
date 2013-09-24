@@ -1,23 +1,41 @@
 package edu.sjsu.cmpe.library.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.sjsu.cmpe.library.dto.LinksDto;
-
-public class Book {
+public class Book implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 12121212243434L;
 	private long isbn;
 	@NotNull
-    @JsonProperty
+    @JsonProperty("title")
     private String title;
+	
+	@JsonProperty("publication-date")
     private String publicationDate;
+	
+	@JsonProperty("language")
     private String language;
+	
+	@JsonProperty("num-pages")
     private int numPages;
-    private String status;
-    private String[] review;
-    private LinksDto author;
+    
+	@JsonProperty("status")
+	private String status;
+    
+	@JsonProperty("reviews")
+	private List<Review> reviews;
+    
+	@JsonProperty("authors" )
+	private  List<Author> authors;
     
     
     
@@ -55,21 +73,25 @@ public class Book {
 		this.status = status;
 	}
 
-	public String[] getReview() {
-		return review;
+	public List<Author> getAuthors() {
+		if(this.authors == null)
+			this.authors = new ArrayList<Author>();
+		return authors;
 	}
 
-	public void setReview(String[] review) {
-		this.review = review;
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 
-	public LinksDto getAuthor() {
-		return author;
+	public List<Review> getReviews() {
+		if(this.reviews == null)
+			this.reviews = new ArrayList<Review>();
+		return reviews;
 	}
 
-	public void setAuthor(LinksDto author) {
-		this.author = author;
-	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}	
 
 	/**
      * @return the isbn

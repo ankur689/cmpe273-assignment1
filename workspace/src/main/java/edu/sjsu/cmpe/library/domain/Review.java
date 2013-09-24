@@ -1,9 +1,13 @@
 package edu.sjsu.cmpe.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Review {
-	
+	@JsonProperty("id")
 	private Long id;
+	@JsonProperty("rating")
 	private Long rating;
+	@JsonProperty("comment")
 	private String comments;
 	
 	

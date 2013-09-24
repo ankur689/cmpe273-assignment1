@@ -1,10 +1,13 @@
 
 package edu.sjsu.cmpe.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Author {
-	
+	@JsonProperty("id")
 	private Long id;
 //	private Long rating;
+	@JsonProperty("name")
 	private String name;
 	
 	
